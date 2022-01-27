@@ -8,7 +8,7 @@
 * [nh-keyboard](https://github.com/nerohiro/nh-keyboard)
 
 ## Preview
-Nothing
+https://youtu.be/1C-FFEdRXRs
 
 ## Discord Server
 <a href="https://discord.gg/CCExrpU"><img src="https://invidget.switchblade.xyz/765378158043332618"/></a>
