@@ -1,7 +1,5 @@
 Config = Config or {}
 
-Config.Price = 5000
-
 Config.Locations = {
     [1] = {
         ['label'] = 'Depolar',
