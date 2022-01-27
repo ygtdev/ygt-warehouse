@@ -4,7 +4,7 @@ RegisterServerEvent('ygt-warehouse:server:RemoveWarehouse', function(data)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
 
-    exports.oxmysql:execute('DELETE FROM warehouse WHERE citizenid = ? AND location = ? AND name = ?',{Player.PlayerData.citizenid, data.location, data.name})
+    exports.oxmysql:execute('DELETE FROM warehouse WHERE citizenid = ? AND location = ? AND name = ? AND id = ?',{Player.PlayerData.citizenid, data.location, data.name, data.id})
     TriggerClientEvent('QBCore:Notify', src, 'Depo kalıcı olarak silindi.', 'error')
 end)
 

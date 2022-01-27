@@ -17,20 +17,20 @@ RegisterNetEvent('ygt-warehouse:client:OpenMenu', function(warehouse)
                     isMenuHeader = true,
                 },
                 {
-                    header = 'Depo Satın Al',
-                    txt = 'Bir depo satın al.',
+                    header = 'Depolar',
+                    txt = 'Depo listesini görüntüle.',
                     params = {
-                        event = 'ygt-warehouse:client:BuyWarehouse',
+                        event = 'ygt-warehouse:client:OpenWarehouseList',
                         args = {
                             warehouse = warehouse,
                         }
                     }
                 },
                 {
-                    header = 'Depolar',
-                    txt = 'Depo listesini görüntüle.',
+                    header = 'Depo Satın Al',
+                    txt = 'Bir depo satın al.',
                     params = {
-                        event = 'ygt-warehouse:client:OpenWarehouseList',
+                        event = 'ygt-warehouse:client:BuyWarehouse',
                         args = {
                             warehouse = warehouse,
                         }
@@ -58,6 +58,16 @@ RegisterNetEvent('ygt-warehouse:client:OpenMenu', function(warehouse)
                     txt = 'Depo listesini görüntüle.',
                     params = {
                         event = 'ygt-warehouse:client:OpenWarehouseList',
+                        args = {
+                            warehouse = warehouse,
+                        }
+                    }
+                },
+                {
+                    header = 'Depo Satın Al',
+                    txt = 'Bir depo satın al.',
+                    params = {
+                        event = 'ygt-warehouse:client:BuyWarehouse',
                         args = {
                             warehouse = warehouse,
                         }
@@ -137,7 +147,7 @@ RegisterNetEvent('ygt-warehouse:client:MyWarehouseList', function(data)
         else
             local menu = {
                 {
-                    header = 'Depoların',
+                    header = 'Depolarım',
                     isMenuHeader = false
                 },
             }
@@ -201,8 +211,8 @@ RegisterNetEvent('ygt-warehouse:client:OpenWarehouse', function(data)
     if keyboard then
         if tonumber(password)then
             if password == v.password then
-                TriggerServerEvent('inventory:server:OpenInventory', 'stash', 'Warehouse_'..v.location..'_'..v.name..'_'..v.citizenid)
-                TriggerEvent('inventory:client:SetCurrentStash', 'Warehouse_'..v.location..'_'..v.name..'_'..v.citizenid)
+                TriggerServerEvent('inventory:server:OpenInventory', 'stash', 'Warehouse_'..v.location..'_'..v.name..'_'..v.citizenid..'_'..v.id)
+                TriggerEvent('inventory:client:SetCurrentStash', 'Warehouse_'..v.location..'_'..v.name..'_'..v.citizenid..'_'..v.id)
             else
                 QBCore.Functions.Notify('Girdiğiniz şifre depo şifresi ile uyuşmuyor.', 'error')
             end
@@ -260,8 +270,8 @@ CreateThread(function()
     for warehouse, _ in pairs(Config.Locations) do
         if Config.Locations[warehouse]['blip'] then
             blip = AddBlipForCoord(Config.Locations[warehouse]['coords']['x'], Config.Locations[warehouse]['coords']['y'], Config.Locations[warehouse]['coords']['z'])
-            SetBlipColour(blip, 0)
-            SetBlipSprite(blip, 355)
+            SetBlipColour(blip, 9)
+            SetBlipSprite(blip, 473)
             SetBlipScale(blip, 0.6)
             SetBlipDisplay(blip, 4)
             SetBlipAsShortRange(blip, true)
