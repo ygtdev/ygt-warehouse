@@ -17,8 +17,8 @@ RegisterNetEvent('ygt-warehouse:client:OpenMenu', function(warehouse)
                     isMenuHeader = true,
                 },
                 {
-                    header = 'Depolar',
-                    txt = 'Depo listesini görüntüle.',
+                    header = Config.Languages[Config.Language]['warehouses'],
+                    txt = Config.Languages[Config.Language]['warehouse_list'],
                     params = {
                         event = 'ygt-warehouse:client:OpenWarehouseList',
                         args = {
@@ -27,8 +27,8 @@ RegisterNetEvent('ygt-warehouse:client:OpenMenu', function(warehouse)
                     }
                 },
                 {
-                    header = 'Depo Satın Al',
-                    txt = 'Bir depo satın al.',
+                    header = Config.Languages[Config.Language]['buy_warehouse'],
+                    txt = Config.Languages[Config.Language]['buy_a_warehouse'],
                     params = {
                         event = 'ygt-warehouse:client:BuyWarehouse',
                         args = {
@@ -44,8 +44,8 @@ RegisterNetEvent('ygt-warehouse:client:OpenMenu', function(warehouse)
                     isMenuHeader = true,
                 },
                 {
-                    header = 'Depolarım',
-                    txt = 'Sana ait olan depoları görüntüle.',
+                    header = Config.Languages[Config.Language]['my_warehouse'],
+                    txt = Config.Languages[Config.Language]['my_warehouse_list'],
                     params = {
                         event = 'ygt-warehouse:client:MyWarehouseList',
                         args = {
@@ -54,8 +54,8 @@ RegisterNetEvent('ygt-warehouse:client:OpenMenu', function(warehouse)
                     }
                 },
                 {
-                    header = 'Depolar',
-                    txt = 'Depo listesini görüntüle.',
+                    header = Config.Languages[Config.Language]['warehouses'],
+                    txt = Config.Languages[Config.Language]['warehouse_list'],
                     params = {
                         event = 'ygt-warehouse:client:OpenWarehouseList',
                         args = {
@@ -64,8 +64,8 @@ RegisterNetEvent('ygt-warehouse:client:OpenMenu', function(warehouse)
                     }
                 },
                 {
-                    header = 'Depo Satın Al',
-                    txt = 'Bir depo satın al.',
+                    header = Config.Languages[Config.Language]['buy_warehouse'],
+                    txt = Config.Languages[Config.Language]['buy_a_warehouse'],
                     params = {
                         event = 'ygt-warehouse:client:BuyWarehouse',
                         args = {
@@ -82,8 +82,8 @@ RegisterNetEvent('ygt-warehouse:client:BuyWarehouse', function(data)
     local warehouse = data.warehouse
 
     local keyboard, name, password = exports['nh-keyboard']:Keyboard({
-        header = 'Depo Satın Al ($'..Config.Locations[warehouse]['price']..')',
-        rows = {'İsim', 'Şifre (Sadece Sayı)'}
+        header = Config.Languages[Config.Language]['buy_warehouse']..' ($'..Config.Locations[warehouse]['price']..')',
+        rows = {Config.Languages[Config.Language]['name'], Config.Languages[Config.Language]['password']}
     })
 
     if keyboard then
@@ -91,11 +91,11 @@ RegisterNetEvent('ygt-warehouse:client:BuyWarehouse', function(data)
             QBCore.Functions.TriggerCallback('ygt-warehouse:server:BuyWarehouse', function(cb)
                 if cb then
                     TriggerServerEvent('qb-phone:server:sendNewMail', {
-                        sender = 'Depolar',
-                        subject = 'Depo Satın Alma İşlemi',
-                        message = 'Depo Adı: '..name..' | Depo Şifresi: '..password..' | Depo Konumu: '..warehouse
+                        sender = Config.Languages[Config.Language]['warehouses'],
+                        subject = Config.Languages[Config.Language]['process_warehouse'],
+                        message = Config.Languages[Config.Language]['warehouse_name']..': '..name..' | '..Config.Languages[Config.Language]['warehouse_password']..': '..password..' | '..Config.Languages[Config.Language]['warehouse_location']..': '..warehouse
                     })
-                    QBCore.Functions.Notify('Depo satın alındı.', 'success')
+                    QBCore.Functions.Notify(Config.Languages[Config.Language]['success'], 'success')
                 else
                     QBCore.Functions.Notify('Depo almak için banka hesabında $'..Config.Locations[warehouse]['price']..' yok.', 'error')
                 end
@@ -113,7 +113,7 @@ RegisterNetEvent('ygt-warehouse:client:OpenWarehouseList', function(data)
     local data = data.warehouse
     QBCore.Functions.TriggerCallback('ygt-warehouse:server:GetWarehouse', function(result)
         if result == nil then
-            QBCore.Functions.Notify('Bu konumda hiç depo bulunmuyor.', 'error')
+            QBCore.Functions.Notify(Config.Languages[Config.Language]['none_warehouse'], 'error')
         else
             local menu = {
                 {
@@ -143,11 +143,11 @@ RegisterNetEvent('ygt-warehouse:client:MyWarehouseList', function(data)
     local data = data.warehouse
     QBCore.Functions.TriggerCallback('ygt-warehouse:server:GetWarehouseCitizenId', function(result)
         if result == nil then
-            QBCore.Functions.Notify('Bu konumda hiç depon bulunmuyor.', 'error')
+            QBCore.Functions.Notify(QBCore.Functions.Notify(Config.Languages[Config.Language]['none_warehouse'], 'error')
         else
             local menu = {
                 {
-                    header = 'Depolarım',
+                    header = QBCore.Functions.Notify(Config.Languages[Config.Language]['my_warehouse'],
                     isMenuHeader = false
                 },
             }
@@ -178,7 +178,7 @@ RegisterNetEvent('ygt-warehouse:client:MyWarehouse', function(data)
             isMenuHeader = false,
         },
         {
-            header = 'Depoyu Görüntüle',
+            header = Config.Languages[Config.Language]['view_warehouse'],
             txt = 'Depoyu aç.',
             params = {
                 event = 'ygt-warehouse:client:OpenWarehouse',
@@ -188,8 +188,8 @@ RegisterNetEvent('ygt-warehouse:client:MyWarehouse', function(data)
             }
         },
         {
-            header = 'Depoyu Sil',
-            txt = 'Depoyu kalıcı olarak sil.',
+            header = Config.Languages[Config.Language]['delete_warehouse_button'],
+            txt = Config.Languages[Config.Language]['delete_warehouse_button'],
             params = {
                 event = 'ygt-warehouse:client:RemoveWarehouse',
                 args = {
@@ -205,7 +205,7 @@ RegisterNetEvent('ygt-warehouse:client:OpenWarehouse', function(data)
 
     local keyboard, password = exports['nh-keyboard']:Keyboard({
         header = v.name,
-        rows = {'Şifre (Sadece Sayı)'}
+        rows = {Config.Languages[Config.Language]['password']}
     })
 
     if keyboard then
@@ -214,7 +214,7 @@ RegisterNetEvent('ygt-warehouse:client:OpenWarehouse', function(data)
                 TriggerServerEvent('inventory:server:OpenInventory', 'stash', 'Warehouse_'..v.location..'_'..v.name..'_'..v.citizenid..'_'..v.id)
                 TriggerEvent('inventory:client:SetCurrentStash', 'Warehouse_'..v.location..'_'..v.name..'_'..v.citizenid..'_'..v.id)
             else
-                QBCore.Functions.Notify('Girdiğiniz şifre depo şifresi ile uyuşmuyor.', 'error')
+                QBCore.Functions.Notify(Config.Languages[Config.Language]['password_error'], 'error')
             end
         end
     end
@@ -225,7 +225,7 @@ RegisterNetEvent('ygt-warehouse:client:RemoveWarehouse', function(data)
 
     local keyboard, password = exports['nh-keyboard']:Keyboard({
         header = v.name,
-        rows = {'Şifre (Sadece Sayı)'}
+        rows = {Config.Languages[Config.Language]['password']}
     })
 
     if keyboard then
@@ -233,7 +233,7 @@ RegisterNetEvent('ygt-warehouse:client:RemoveWarehouse', function(data)
             if password == v.password then
                 TriggerServerEvent('ygt-warehouse:server:RemoveWarehouse', v)
             else
-                QBCore.Functions.Notify('Girdiğiniz şifre depo şifresi ile uyuşmuyor.', 'error')
+                QBCore.Functions.Notify(Config.Languages[Config.Language]['password_error'], 'error')
             end
         end
     end
