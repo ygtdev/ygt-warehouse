@@ -147,7 +147,7 @@ RegisterNetEvent('ygt-warehouse:client:MyWarehouseList', function(data)
         else
             local menu = {
                 {
-                    header = QBCore.Functions.Notify(Config.Languages[Config.Language]['my_warehouse'],
+                    header = QBCore.Functions.Notify(Config.Languages[Config.Language]['my_warehouse']),
                     isMenuHeader = false
                 },
             }
