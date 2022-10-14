@@ -15,7 +15,7 @@ Config.Locations = {
     }
 }
 
-Config.Language = 'tr'
+Config.Language = 'en'
 Config.Languages = {
     ['tr'] = {
         -- server
@@ -62,5 +62,28 @@ Config.Languages = {
         ['delete_warehouse_button'] = 'Delete Warehouse',
         ['delete_warehouse'] = 'Delete Warehouse forever.',
         ['password_error'] = 'Password incorrect.'
+    }
+    ['dk'] = {
+        -- server
+        ['remove_warehouse'] = 'Fjernede lager.',
+        -- client
+        ['warehouses'] = 'Lager',
+        ['warehouse_list'] = 'Vis lager liste.',
+        ['buy_warehouse'] = 'Køb Lager',
+        ['buy_a_warehouse'] = 'Køb et lager.',
+        ['my_warehouse'] = 'Mit Lager',
+        ['my_warehouse_list'] = 'Vis min lagerl iste.',
+        ['name'] = 'Navn',
+        ['password'] = 'Kodeord',
+        ['process_warehouse'] = 'Lager købs process',
+        ['warehouse_name'] = 'Lager Navn',
+        ['warehouse_password'] = 'Lager Kodeord',
+        ['warehouse_location'] = 'Lager Lokation',
+        ['success'] = 'Du købte et lager.',
+        ['none_warehouse'] = 'Der er ikke noget lager på denne lokation.',
+        ['view_warehouse'] = 'Vis Lager',
+        ['delete_warehouse_button'] = 'Slet Lager',
+        ['delete_warehouse'] = 'Slet lager forevigt.',
+        ['password_error'] = 'Forkert Kode.'
     }
 }
