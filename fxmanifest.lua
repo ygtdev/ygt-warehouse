@@ -4,7 +4,11 @@ game 'gta5'
 description 'ygt-warehouse'
 version '1.0'
 
-server_script 'server/*.lua'
+server_script {
+    'server/*.lua',
+    '@oxmysql/lib/MySQL.lua'
+}
+
 client_script 'client/*.lua'
 shared_script 'config.lua'
 
