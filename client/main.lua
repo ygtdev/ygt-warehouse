@@ -143,7 +143,7 @@ RegisterNetEvent('ygt-warehouse:client:MyWarehouseList', function(data)
     local data = data.warehouse
     QBCore.Functions.TriggerCallback('ygt-warehouse:server:GetWarehouseCitizenId', function(result)
         if result == nil then
-            QBCore.Functions.Notify(QBCore.Functions.Notify(Config.Languages[Config.Language]['none_warehouse'], 'error')
+            QBCore.Functions.Notify(Config.Languages[Config.Language]['none_warehouse'], 'error')
         else
             local menu = {
                 {
